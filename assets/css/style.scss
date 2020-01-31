@@ -12,21 +12,51 @@ body{
 }
 .wrapper-hero{
     position: relative;
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
     width:100%;
+    min-height: (809 / 1440) * 100vw;
+    margin: 0;
+    padding: 0;
+    @include media-breakpoint-down(sm) {
+        justify-content: flex-start;
+        min-height: (884 / 320) * 100vw;
+    }
     .wrapper-hero__content{
-        position: absolute;
-        z-index: 999;
+        position: relative;
+        height:auto;
+        min-height: (492 / 1440) * 100vw;
+        z-index: 20;
+        @include media-breakpoint-down(sm) {
+            min-height: (716 / 320) * 100vw;
+        }
+    }
+    .wrapper-hero__instructions{
+        position: relative;
+        min-height: (314/ 1440) * 100vw;
+        height:auto;
+        // background-color:transparentize($color: red, $amount: 0.5);
+        z-index: 20;
+        @include media-breakpoint-down(sm) {
+            min-height: (312 / 320) * 100vw;
+            height:800px;
+        }
     }
 }
 
 .wrapper-hero__img{
-    position: relative;
-    padding-top: (809 / 1440) * 100%;
+    position: absolute;
+    top:0;
+    left:0;
+    height: 100%;
+    min-height: (809 / 1440) * 100vw;
     width:100%;
     z-index: 1;
     overflow: hidden;
     @include media-breakpoint-down(sm) {
-        padding-top: (884 / 320) * 100vw;
+        min-height: none;
+        max-height: (884 / 320) * 100vw;
     }
     img{
         top:0;

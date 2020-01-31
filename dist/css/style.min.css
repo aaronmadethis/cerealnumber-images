@@ -216,9 +216,10 @@
 .mb-auto,.my-auto{margin-bottom:auto !important}
 .ml-auto,.mx-auto{margin-left:auto !important}
 body{background-color:transparent;margin:0;padding:0}
-.wrapper-hero{position:relative;width:100%}
-.wrapper-hero .wrapper-hero__content{position:absolute;z-index:999}
-.wrapper-hero__img{position:relative;padding-top:56.1805555556%;width:100%;z-index:1;overflow:hidden}
+.wrapper-hero{position:relative;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;width:100%;min-height:56.1805555556vw;margin:0;padding:0}
+.wrapper-hero .wrapper-hero__content{position:relative;height:auto;min-height:34.1666666667vw;z-index:20}
+.wrapper-hero .wrapper-hero__instructions{position:relative;min-height:21.8055555556vw;height:auto;z-index:20}
+.wrapper-hero__img{position:absolute;top:0;left:0;height:100%;min-height:56.1805555556vw;width:100%;z-index:1;overflow:hidden}
 .wrapper-hero__img img{top:0;left:0;-webkit-transform:translate(0,-33.125%);transform:translate(0,-33.125%);position:absolute;width:100%;max-width:100%;height:auto}
 .wrapper-cereal{position:relative;width:100%}
 .wrapper-cereal .wrapper-cereal__content{position:absolute;z-index:999;width:100%;padding-left:70%;height:100%;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center}
@@ -1068,7 +1069,10 @@ body{background-color:transparent;margin:0;padding:0}
 .mr-xl-auto,.mx-xl-auto{margin-right:auto !important}
 .mb-xl-auto,.my-xl-auto{margin-bottom:auto !important}
 .ml-xl-auto,.mx-xl-auto{margin-left:auto !important}
-}@media(max-width:767.98px){.wrapper-hero__img{padding-top:276.25vw}
+}@media(max-width:767.98px){.wrapper-hero{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;min-height:276.25vw}
+.wrapper-hero .wrapper-hero__content{min-height:223.75vw}
+.wrapper-hero .wrapper-hero__instructions{min-height:97.5vw;height:800px}
+.wrapper-hero__img{min-height:none;max-height:276.25vw}
 .wrapper-hero__img img{-webkit-transform:translate(-52.0884520885%,0);transform:translate(-52.0884520885%,0);width:auto;max-width:none;height:100%;max-height:100%}
 .wrapper-cereal .wrapper-cereal__content{height:auto;padding-top:103.125%;padding-left:15px}
 .wrapper-cereal__img{padding-top:300.3125vw}
