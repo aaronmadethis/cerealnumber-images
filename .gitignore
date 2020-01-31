@@ -1,0 +1,53 @@
+# No need to add the node_modules folder to the repo #
+node_modules/
+
+# No need to add the plugins folder to the repo #
+wp-content/plugins
+wp-content/uploads
+
+# No need to add the fonts folder to the repo #
+webfonts/
+
+# No need to add the favicons folder to the repo #
+favicons/
+
+# sitemaps not needed locally #
+sitemap.xml
+sitemap.xml.gz
+
+# no need for these #
+readme.html
+license.txt
+.log
+.DS_Store
+.htaccess
+screenshot.psd
+notes.txt
+notes-acf-setup.txt
+functions/fields.php
+wp-config.php
+*.psd
+/wp-content/themes/twentyseventeen
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Packages #
+############
+# it's better to unpack these files and commit the raw source
+# git has its own built in compression methods
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip

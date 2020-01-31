@@ -1,0 +1,94 @@
+$grid-columns:	24;
+$grid-gutter-width:	0px;
+
+@import "bootstrap-grid";
+
+
+body{
+    background-color:transparent;
+    margin:0;
+    padding:0;
+
+}
+.wrapper-hero{
+    position: relative;
+    width:100%;
+    .wrapper-hero__content{
+        position: absolute;
+        z-index: 999;
+    }
+}
+
+.wrapper-hero__img{
+    position: relative;
+    padding-top: (809 / 1440) * 100%;
+    width:100%;
+    z-index: 1;
+    overflow: hidden;
+    @include media-breakpoint-down(sm) {
+        padding-top: (884 / 320) * 100vw;
+    }
+    img{
+        top:0;
+        left:0;
+        transform: translate(0, (530 / 1600) * -100%);
+        position: absolute;
+        width:100%;
+        max-width: 100%;
+        height:auto;
+        @include media-breakpoint-down(sm) {
+            transform: translate((424 / 814) * -100%, 0);
+            width:auto;
+            max-width: none;
+            height:100%;
+            max-height: 100%;
+        }
+    }
+
+}
+
+.wrapper-cereal{
+    position: relative;
+    width:100%;
+    .wrapper-cereal__content{
+        position: absolute;
+        z-index: 999;
+        width:100%;
+        padding-left:70%;
+        height: 100%;
+        display: flex;
+        // justify-content: center;
+        align-items: center;
+        @include media-breakpoint-down(sm) {
+            height: auto;
+            padding-top:(330/320) * 100%;
+            padding-left:15px;
+        }
+    }
+}
+.wrapper-cereal__img{
+    position: relative;
+    padding-top: (700 / 1440) * 100%;
+    width:100%;
+    z-index: 1;
+    overflow: hidden;
+    @include media-breakpoint-down(sm) {
+        padding-top: (961 / 320) * 100vw;
+    }
+    img{
+        top:0;
+        left:0;
+        transform: translate(0, 0);
+        position: absolute;
+        width:100%;
+        max-width: 100%;
+        height:auto;
+        @include media-breakpoint-down(sm) {
+            transform: translate((66 / 1074) * -100%, (167 / 1193) * -100%);
+            width:auto;
+            max-width: none;
+            height:124%;
+            max-height: 124%;
+        }
+    }
+}
