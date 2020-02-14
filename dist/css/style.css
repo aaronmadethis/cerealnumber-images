@@ -1307,9 +1307,9 @@ html { -webkit-box-sizing: border-box; box-sizing: border-box; -ms-overflow-styl
   .mb-xl-auto, .my-xl-auto { margin-bottom: auto !important; }
   .ml-xl-auto, .mx-xl-auto { margin-left: auto !important; } }
 
-* { font-family: commuters-sans, sans-serif; font-weight: 800; font-style: normal; -webkit-font-feature-settings: 'calt', 'clig', 'kern', 'liga', 'locl', 'rlig'; font-feature-settings: 'calt', 'clig', 'kern', 'liga', 'locl', 'rlig'; }
+* { font-family: commuters-sans, sans-serif; font-weight: 900; font-style: normal; -webkit-font-feature-settings: 'calt', 'clig', 'kern', 'liga', 'locl', 'rlig'; font-feature-settings: 'calt', 'clig', 'kern', 'liga', 'locl', 'rlig'; }
 
-h1, h2, h3, h4, h5, h6 { font-weight: 400; }
+h1, h2, h3, h4, h5, h6 { font-weight: 900; }
 
 body { background-color: transparent; margin: 0; padding: 0; }
 
