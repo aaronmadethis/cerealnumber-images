@@ -95,11 +95,19 @@ body {
 		position: absolute;
 		z-index: 999;
 		width: 100%;
-		padding-left: 70%;
+		padding-left: 65%;
 		height: 100%;
 		display: flex;
 		// justify-content: center;
 		align-items: center;
+		color:white;
+		padding-right: 60px;
+		h1{
+			color:inherit;
+		}
+		p{
+			font-family: Arial, Helvetica, sans-serif;
+		}
 		@include media-breakpoint-down(sm) {
 			height: auto;
 			padding-top: (330/320) * 100%;
