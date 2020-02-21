@@ -25,61 +25,81 @@ const frankjs = {
     init: function () {
         console.log('frankjs started');
     },
-    scrolljack: function (el) {
+    scrollParallax: function (el) {
+        var win_h = window.innerHeight;
         var wrapper = el;
+        var current = 0;
+        var target = 0;
+        var ease = 0.065;
+        var rafId = undefined;
+        var rafActive = false;
         var triggers = Array.prototype.slice.call(wrapper.querySelectorAll('.js-scroll-trigger'));
-
-        var parent = frankutils.addwaypoint(wrapper, wrapper, ['js-active'], '80%');
+        var maxY = 32;
+        var maxScale = 4;
+        // var parent = frankutils.addwaypoint(wrapper, wrapper, ['js-active'], '100%');
 
         triggers.forEach(function (el, i) {
-            let trigger = new window.Waypoint({
-                element: el,
-                handler: function (direction) {
-                    var current, deactivate, slideClass
+            let animateImg = el.querySelector(".cereal_img");
+            frankutils.setTransform(animateImg, 'translateY(' + -maxY + 'px) scale(1.02)')
+        })
 
-                    if (direction == 'down') {
-                        // animate in trigger
-                        // animate out trigger - 1
-                        current = (i + 1);
-                        deactivate = deactivateClasses(current, triggers.length);
-                        slideClass = 'js-slide__n' + current;
-                        deactivate.push('js-up');
-                    }
-                    if (direction == 'up') {
-                        // animate in trigger - 1
-                        // animate out trigger
-                        current = i;
-                        deactivate = deactivateClasses(current, triggers.length);
-                        slideClass = 'js-slide__n' + current;
-                        deactivate.push('js-down');
-                    }
-
-                    frankutils.removeClass(wrapper, deactivate);
-                    frankutils.addClass(wrapper, [slideClass, 'js-' + direction]);
-
-                },
-                offset: 'bottom-in-view'
-            })
-        });
-
-        var deactivateClasses = function (current, total) {
-            var classNames = [];
-            for (let index = 0; index < total; index++) {
-                if (current != (index + 1)) {
-                    classNames.push('js-slide__n' + (index + 1));
-                }
-            }
-            return classNames;
+        var updateScroll = function() {
+            target = window.scrollY || window.pageYOffset
+            startAnimation()
         }
 
-        frankjs.trackScroll();
-    },
-    trackScroll: function () {
-        window.addEventListener('scroll', function (event) {
-            this.console.log(window.scrollY);
-        }, false);
-    }
+        var startAnimation = function() {
+            if (!rafActive) {
+                rafActive = true
+                rafId = requestAnimationFrame(updateAnimation)
+            }
+        }
 
+        var updateAnimation = function(){
+            var diff = target - current
+            var delta = Math.abs(diff) < 0.1 ? 0 : diff * ease
+
+            if (delta) { // If `delta !== 0`
+                // Update `current` scroll position
+                current += delta
+                // Round value for better performance
+                current = parseFloat(current.toFixed(2))
+                // Call `update` again, using `requestAnimationFrame`
+                rafId = requestAnimationFrame(updateAnimation)
+            } else { // If `delta === 0`
+                // Update `current`, and finish the animation loop
+                current = target
+                rafActive = false
+                cancelAnimationFrame(rafId)
+            }
+            updateAnimationImages();
+        }
+
+        var updateAnimationImages = function() {
+            triggers.forEach(function (el, i) {
+                let animateImg = el.querySelector(".cereal_img")
+                let imgTop = window.innerHeight - el.getBoundingClientRect().top;
+                let myCurrent = frankutils.getComputedTranslateY(animateImg);
+                let myTarget = ((imgTop / window.innerHeight) - 1) * maxY;
+                let diff = myTarget - myCurrent;
+                let delta = Math.abs(diff) < 0.1 ? 0 : diff * ease;
+                myCurrent += delta
+                // let imgHeight = el.getBoundingClientRect().height;
+                // myCurrent = myCurrent < 10 ? parseFloat(myCurrent.toFixed(2)) : 10;
+                // let scaleDiff = imgTop / imgHeight;
+                // scaleDiff = (scaleDiff * maxScale) / 100;
+                // scaleDiff += 1;
+                // console.log(scaleDiff);
+
+                // frankutils.setTransform(animateImg, 'translateY(' + myCurrent + 'px) scale(' + scaleDiff + ')')
+                frankutils.setTransform(animateImg, 'translateY(' + myCurrent + 'px) scale(1.02)')
+            })
+        }
+
+        // startAnimation();
+        window.addEventListener('scroll', updateScroll)
+
+    }
 }
 
 const frankutils = {
@@ -119,13 +139,29 @@ const frankutils = {
         }
     },
     elementOffset: function(el){
-        return yOffset = window.scrollY - el.offsetTop;
+        return window.innerHeight - el.getBoundingClientRect().top;
+    },
+    setTransform: function(el, transform) {
+        el.style.transform = transform
+        el.style.WebkitTransform = transform
+    },
+    easeOutQuad: function(t) {
+        return t * _(2 - t)
+    },
+    getComputedTranslateY: function(obj){
+        if (!window.getComputedStyle) return;
+        var style = getComputedStyle(obj),
+            transform = style.transform || style.webkitTransform || style.mozTransform;
+        var mat = transform.match(/^matrix3d\((.+)\)$/);
+        if (mat) return parseFloat(mat[1].split(', ')[13]);
+        mat = transform.match(/^matrix\((.+)\)$/);
+        return mat ? parseFloat(mat[1].split(', ')[5]) : 0;
     }
 }
 
 function frankinit() {
     frankjs.init();
-    frankjs.scrolljack(document.querySelectorAll('.js-scrolljack-init')[0]);
+    frankjs.scrollParallax(document.querySelectorAll('.js-scrolljack-init')[0]);
 }
 
 ready(frankinit);

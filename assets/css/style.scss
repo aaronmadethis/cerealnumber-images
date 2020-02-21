@@ -13,6 +13,9 @@ $grid-gutter-width: 0px;
 h1,h2,h3,h4,h5,h6{
     font-weight: 900;
 }
+html{
+	scroll-behavior: smooth;
+}
 
 body {
 	background-color: transparent;
@@ -132,6 +135,8 @@ body {
 		width: 100%;
 		max-width: 100%;
 		height: auto;
+		transform-origin: 27.4% 22.2%;
+		// transition: transform 0.01s ease;
 		@include media-breakpoint-down(sm) {
 			transform: translate((66 / 1074) * -100%, (167 / 1193) * -100%);
 			width: auto;
@@ -140,4 +145,8 @@ body {
 			max-height: 124%;
 		}
 	}
+}
+
+.wrapper-benefits{
+	min-height: 100vh;
 }
