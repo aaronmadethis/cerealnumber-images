@@ -9,7 +9,7 @@
     "animejs": "^3.0.1",
     "jquery": "^3.4.1",
     "scrolltrigger-classes": "^0.3.6",
-    "underscore": "^1.9.1",
+    "underscore": "^1.12.1",
     "waypoints": "^4.0.1"
   },
   "devDependencies": {
